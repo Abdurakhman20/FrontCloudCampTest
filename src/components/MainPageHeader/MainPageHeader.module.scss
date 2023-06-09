@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 25px;
+}
+.avatarIcon {
+  margin-right: 24px;
+}
+.name {
+  font-size: 20px;
+  color: #333;
+  font-weight: 600;
+  line-height: 26px;
+  margin-bottom: 8px;
+}
+.linksContainer {
+  display: flex;
+}
+.linkItem {
+  margin-right: 16px;
+  a {
+    color: #5558fa;
+  }
+  img {
+    margin-right: 4px;
+  }
+}

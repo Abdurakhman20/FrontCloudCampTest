@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  input {
+    background-color: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    padding: 12px;
+    max-width: 400px;
+    border-radius: 4px;
+  }
+}
