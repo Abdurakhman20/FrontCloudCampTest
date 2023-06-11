@@ -9,4 +9,7 @@
   &:hover {
     background-color: #0004dc;
   }
+  &:disabled {
+    background-color: #666;
+  }
 }
