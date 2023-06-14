@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./MainPage.module.scss";
 import MainPageForm from "../../components/MainPageForm";
-import PageWrapper from "../../components/PageWrapper";
 import MainPageHeader from "../../components/MainPageHeader";
+import PageWrapper from "../../components/PageWrapper";
 const MainPage: React.FC = () => {
   return (
     <PageWrapper>

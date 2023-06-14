@@ -4,6 +4,7 @@ import Input from "../UI/Input";
 import styles from "./MainPageForm.module.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { maskPhoneNumber } from "../../utils/maskPhoneNumber";
+import { useNavigate } from "react-router-dom";
 
 export interface IFormValues {
   "Номер Телефона": string;
@@ -19,50 +20,44 @@ const MainPageForm: React.FC = () => {
   } = useForm<IFormValues>({
     mode: "onBlur",
   });
-
-  const onSubmit: SubmitHandler<IFormValues> = (data) => {
+  const navigate = useNavigate();
+  const onSubmit: SubmitHandler<IFormValues> = (data: IFormValues) => {
     console.log(data);
     reset();
+    navigate("/create");
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.wrapper}>
         <div className={styles.input__wrapper}>
-          <Input
+          <Input<IFormValues>
             htmlFor="phone"
             type="tel"
             id="phone"
             labelText="Номер Телефона"
-            placeholder="+7 (999) 999-99-99"
+            placeholder="+7 (925) 952-31-42"
             register={register}
             required
             pattern={/^(\+7 )?\(\d{3}\) \d{3}-\d{2}-\d{2}$/}
+            errors={errors}
             onInput={maskPhoneNumber}
           />
-          {errors?.["Номер Телефона"] && (
-            <p className={styles.errorText}>
-              {errors?.["Номер Телефона"]?.message || "Error!"}
-            </p>
-          )}
         </div>
         <div className={styles.input__wrapper}>
-          <Input
+          <Input<IFormValues>
             htmlFor="email"
             type="text"
             id="email"
             labelText="Email"
-            placeholder="tim.jennings@example.com"
+            placeholder="ausmanov706@gmail.com"
             register={register}
             required
             pattern={/^[^\s@]+@[^\s@]+\.[^\s@]+$/}
+            errors={errors}
           />
-          {errors?.Email && (
-            <p className={styles.errorText}>
-              {errors?.Email?.message || "Error!"}
-            </p>
-          )}
         </div>
+
         <Button type="submit" text="Начать" />
       </div>
     </form>

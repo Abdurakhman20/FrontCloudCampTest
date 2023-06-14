@@ -15,3 +15,20 @@
     font-size: 16px;
   }
 }
+.errorText {
+  font-size: 16px;
+  color: #c70039;
+  padding-top: 4px;
+}
+.error {
+  input {
+    color: #c70039;
+    border: 1px solid #c70039;
+  }
+  input::placeholder {
+    color: #c70039;
+  }
+  label {
+    color: #c70039;
+  }
+}

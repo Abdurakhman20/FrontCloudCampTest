@@ -4,7 +4,16 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   padding-bottom: 25px;
 }
+
 .avatarIcon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #d5e4f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
   margin-right: 24px;
 }
 .name {

@@ -1,21 +1,31 @@
 import React from "react";
 import styles from "./Input.module.scss";
-import { IFormValues } from "../../MainPageForm";
-import { Path, UseFormRegister } from "react-hook-form/dist/types";
+import {
+  Path,
+  UseFormRegister,
+  FieldValues,
+  DeepMap,
+  FieldError,
+} from "react-hook-form/dist/types";
+import cn from "classnames";
 
-type InputProps = {
+export type FieldErrors<TFieldValues extends FieldValues = FieldValues> =
+  DeepMap<TFieldValues, FieldError>;
+
+type InputProps<T extends FieldValues> = {
   htmlFor: string;
   type: string;
   id: string;
   placeholder: string;
-  labelText: Path<IFormValues>;
-  register: UseFormRegister<IFormValues>;
+  labelText: Path<T>;
+  register: UseFormRegister<T>;
   required: boolean;
   pattern?: RegExp;
+  errors?: FieldErrors;
   onInput?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Input: React.FC<InputProps> = ({
+function Input<T extends FieldValues>({
   htmlFor,
   type,
   id,
@@ -24,22 +34,28 @@ const Input: React.FC<InputProps> = ({
   register,
   required,
   pattern,
+  errors,
   onInput,
-}) => {
+}: InputProps<T>) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (onInput) {
       onInput(event);
     }
   };
+
+  const wrapperClasses = cn(styles.wrapper, {
+    [styles.error]: errors?.[labelText],
+  });
+
   return (
-    <div className={styles.wrapper}>
+    <div className={wrapperClasses}>
       <label htmlFor={htmlFor}>{labelText}</label>
       <input
         type={type}
         id={id}
         placeholder={placeholder}
         {...register(labelText, {
-          required: "Поле обязательно к заполнению!",
+          required: required && "Поле обязательно к заполнению!",
           pattern: pattern && {
             value: pattern,
             message: "Некорректный формат!",
@@ -47,8 +63,13 @@ const Input: React.FC<InputProps> = ({
         })}
         onInput={handleChange}
       />
+      {errors?.[labelText] && (
+        <p className={styles.errorText}>
+          {errors?.[labelText]?.message || "Error!"}
+        </p>
+      )}
     </div>
   );
-};
+}
 
 export default Input;
