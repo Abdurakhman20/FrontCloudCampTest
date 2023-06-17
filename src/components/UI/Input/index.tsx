@@ -18,6 +18,7 @@ type InputProps<T extends FieldValues> = {
   id: string;
   placeholder: string;
   labelText: Path<T>;
+  name?: string;
   register: UseFormRegister<T>;
   required: boolean;
   pattern?: RegExp;
@@ -31,6 +32,7 @@ function Input<T extends FieldValues>({
   id,
   placeholder,
   labelText,
+  name,
   register,
   required,
   pattern,
@@ -49,7 +51,7 @@ function Input<T extends FieldValues>({
 
   return (
     <div className={wrapperClasses}>
-      <label htmlFor={htmlFor}>{labelText}</label>
+      <label htmlFor={htmlFor}>{name}</label>
       <input
         type={type}
         id={id}

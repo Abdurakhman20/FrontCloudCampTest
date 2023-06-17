@@ -5,16 +5,30 @@ import Stepper from "../../components/UI/Stepper";
 import PageWrapper from "../../components/PageWrapper";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import StepTwo from "../../components/StepTwo";
 
 const CreatePage: React.FC = () => {
   const current = useSelector((state: RootState) => state.steps.current);
 
+  const renderStep = () => {
+    switch (current) {
+      case 1:
+        return <StepOne />;
+      case 2:
+        return <StepTwo />;
+      case 3:
+        return <p>H</p>;
+      default:
+        return null;
+    }
+  };
+  console.log(current);
   return (
     <>
       <div className={styles.stepperContainer}>
         <Stepper />
       </div>
-      <PageWrapper>{current === 1 && <StepOne />}</PageWrapper>
+      <PageWrapper>{renderStep()}</PageWrapper>
     </>
   );
 };

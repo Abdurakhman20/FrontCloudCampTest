@@ -91,6 +91,7 @@ const StepOne: React.FC = () => {
             type="text"
             id="nick"
             labelText="Nickname"
+            name="Nickname"
             placeholder="Nickname"
             register={register}
             required={true}
@@ -103,6 +104,7 @@ const StepOne: React.FC = () => {
             type="text"
             id="name"
             labelText="Name"
+            name="Name"
             placeholder="Name"
             register={register}
             required={true}
@@ -115,6 +117,7 @@ const StepOne: React.FC = () => {
             type="text"
             id="sername"
             labelText="Sername"
+            name="Sername"
             placeholder="Sername"
             register={register}
             required={true}

@@ -36,9 +36,10 @@ const MainPageForm: React.FC = () => {
             type="tel"
             id="phone"
             labelText="Номер Телефона"
+            name="Номер Телефона"
             placeholder="+7 (925) 952-31-42"
             register={register}
-            required
+            required={true}
             pattern={/^(\+7 )?\(\d{3}\) \d{3}-\d{2}-\d{2}$/}
             errors={errors}
             onInput={maskPhoneNumber}
@@ -50,9 +51,10 @@ const MainPageForm: React.FC = () => {
             type="text"
             id="email"
             labelText="Email"
+            name="Email"
             placeholder="ausmanov706@gmail.com"
             register={register}
-            required
+            required={true}
             pattern={/^[^\s@]+@[^\s@]+\.[^\s@]+$/}
             errors={errors}
           />
