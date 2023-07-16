@@ -1,0 +1,18 @@
+.label {
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+}
+.checkGroup {
+  margin-top: 24px;
+  .checkWrapper {
+    margin-top: 8px;
+    input {
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid rgba(0, 0, 0, 0.24);
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+  }
+}

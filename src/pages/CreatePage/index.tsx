@@ -6,6 +6,7 @@ import PageWrapper from "../../components/PageWrapper";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import StepTwo from "../../components/StepTwo";
+import StepThree from "../../components/StepThree";
 
 const CreatePage: React.FC = () => {
   const current = useSelector((state: RootState) => state.steps.current);
@@ -17,7 +18,7 @@ const CreatePage: React.FC = () => {
       case 2:
         return <StepTwo />;
       case 3:
-        return <p>H</p>;
+        return <StepThree />;
       default:
         return null;
     }
