@@ -1,30 +1,8 @@
 import React from "react";
 import styles from "./Input.module.scss";
-import {
-  Path,
-  UseFormRegister,
-  FieldValues,
-  DeepMap,
-  FieldError,
-} from "react-hook-form/dist/types";
+import { FieldValues } from "react-hook-form/dist/types";
+import { InputProps } from "./types";
 import cn from "classnames";
-
-export type FieldErrors<TFieldValues extends FieldValues = FieldValues> =
-  DeepMap<TFieldValues, FieldError>;
-
-type InputProps<T extends FieldValues> = {
-  htmlFor: string;
-  type: string;
-  id: string;
-  placeholder: string;
-  labelText: Path<T>;
-  name?: string;
-  register: UseFormRegister<T>;
-  required: boolean;
-  pattern?: RegExp;
-  errors?: FieldErrors;
-  onInput?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-};
 
 function Input<T extends FieldValues>({
   htmlFor,

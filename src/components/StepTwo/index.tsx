@@ -6,13 +6,10 @@ import Button from "../UI/Button";
 import { useAppDispatch } from "../../redux/store";
 import { onClickBack, onClickNext } from "../../redux/slices/stepsSlice";
 import CheckGroup from "../UI/CheckGroup";
-
-type Advantage = {
-  value: string;
-};
+import { setStepTwoData } from "../../redux/slices/formSlice";
 
 interface IStepTwoForm {
-  advantages: Advantage[];
+  advantages: { value: string }[];
   checkboxGroup: number[];
   radioGroup: number;
 }
@@ -45,7 +42,17 @@ const StepTwo: React.FC = () => {
   };
 
   const onSubmit: SubmitHandler<IStepTwoForm> = (data: IStepTwoForm) => {
-    console.log(data);
+    const { advantages, checkboxGroup, radioGroup } = data;
+    // У меня advantages это массив объектов из строк,
+    // а по требованию нужно, чтобы advantages было массивом строк
+    const newAdvantages = advantages.map((item) => item.value); // Здесь я преобразую
+    const newCheckboxGroup = checkboxGroup.map((item) => Number(item));
+    const newData = {
+      advantages: newAdvantages,
+      checkboxGroup: newCheckboxGroup,
+      radioGroup: +radioGroup,
+    };
+    dispatch(setStepTwoData(newData));
     reset();
     dispatch(onClickNext());
   };
@@ -64,7 +71,7 @@ const StepTwo: React.FC = () => {
                   placeholder="Advantages"
                   labelText={`advantages.${i}.value`}
                   register={register}
-                  required={false}
+                  required={true}
                   errors={errors}
                 />
               </div>
@@ -98,7 +105,7 @@ const StepTwo: React.FC = () => {
             text="Back"
             style="back"
             type="button"
-            onClick={() => dispatch(onClickBack)}
+            onClick={() => dispatch(onClickBack())}
           />
           <Button text="Next" type="submit" />
         </div>

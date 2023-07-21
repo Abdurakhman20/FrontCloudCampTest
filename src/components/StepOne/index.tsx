@@ -8,6 +8,7 @@ import ReactSelect, { StylesConfig } from "react-select";
 import cn from "classnames";
 import { useAppDispatch } from "../../redux/store";
 import { onClickNext } from "../../redux/slices/stepsSlice";
+import { setStepOneData } from "../../redux/slices/formSlice";
 
 interface IStepOneForm {
   Nickname: string;
@@ -54,6 +55,7 @@ const customStyles: StylesConfig = {
 };
 
 const StepOne: React.FC = () => {
+  // const stepOneData = useSelector((state: RootState) => state.form.stepOneData);
   const dispatch = useAppDispatch();
   const {
     register,
@@ -66,10 +68,11 @@ const StepOne: React.FC = () => {
   });
   const navigate = useNavigate();
   const onSubmit: SubmitHandler<IStepOneForm> = (data: IStepOneForm) => {
-    console.log(data);
+    dispatch(setStepOneData(data));
     reset();
     dispatch(onClickNext());
   };
+
   const getValue = (value: string) => {
     return value ? options.find((opt) => opt.value === value) : "";
   };
