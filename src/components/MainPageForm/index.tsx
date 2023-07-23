@@ -32,11 +32,9 @@ const MainPageForm: React.FC = () => {
       <div className={styles.wrapper}>
         <div className={styles.input__wrapper}>
           <Input<IFormValues>
-            htmlFor="phone"
             type="tel"
             id="phone"
             labelText="Номер Телефона"
-            name="Номер Телефона"
             placeholder="+7 (925) 952-31-42"
             register={register}
             required={true}
@@ -47,11 +45,9 @@ const MainPageForm: React.FC = () => {
         </div>
         <div className={styles.input__wrapper}>
           <Input<IFormValues>
-            htmlFor="email"
             type="text"
             id="email"
             labelText="Email"
-            name="Email"
             placeholder="ausmanov706@gmail.com"
             register={register}
             required={true}

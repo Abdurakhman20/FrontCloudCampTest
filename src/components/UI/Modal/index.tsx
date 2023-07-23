@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { closeModal } from "../../../redux/slices/formSlice";
 import { useAppDispatch } from "../../../redux/store";
+import { setCurrentStep } from "../../../redux/slices/stepsSlice";
 
 type ModalProps = {
   status: "error" | "success";
@@ -19,6 +20,7 @@ const Modal: React.FC<ModalProps> = ({ status }) => {
 
   const onClickHome = () => {
     dispatch(closeModal());
+    dispatch(setCurrentStep(1));
     navigate("/");
   };
 

@@ -6,9 +6,10 @@ import Button from "../UI/Button";
 import { useNavigate } from "react-router-dom";
 import ReactSelect, { StylesConfig } from "react-select";
 import cn from "classnames";
-import { useAppDispatch } from "../../redux/store";
+import { RootState, useAppDispatch } from "../../redux/store";
 import { onClickNext } from "../../redux/slices/stepsSlice";
 import { setStepOneData } from "../../redux/slices/formSlice";
+import { useSelector } from "react-redux";
 
 interface IStepOneForm {
   Nickname: string;
@@ -55,7 +56,7 @@ const customStyles: StylesConfig = {
 };
 
 const StepOne: React.FC = () => {
-  // const stepOneData = useSelector((state: RootState) => state.form.stepOneData);
+  const stepOneData = useSelector((state: RootState) => state.form.stepOneData);
   const dispatch = useAppDispatch();
   const {
     register,
@@ -65,6 +66,9 @@ const StepOne: React.FC = () => {
     formState: { errors },
   } = useForm<IStepOneForm>({
     mode: "onBlur",
+    defaultValues: {
+      ...stepOneData,
+    },
   });
   const navigate = useNavigate();
   const onSubmit: SubmitHandler<IStepOneForm> = (data: IStepOneForm) => {
@@ -90,11 +94,9 @@ const StepOne: React.FC = () => {
       <div className={styles.wrapper}>
         <div className={styles.control__wrapper}>
           <Input<IStepOneForm>
-            htmlFor="nick"
             type="text"
-            id="nick"
+            id="field-nickname"
             labelText="Nickname"
-            name="Nickname"
             placeholder="Nickname"
             register={register}
             required={true}
@@ -103,11 +105,9 @@ const StepOne: React.FC = () => {
         </div>
         <div className={styles.control__wrapper}>
           <Input<IStepOneForm>
-            htmlFor="name"
             type="text"
-            id="name"
+            id="field-name"
             labelText="Name"
-            name="Name"
             placeholder="Name"
             register={register}
             required={true}
@@ -116,11 +116,9 @@ const StepOne: React.FC = () => {
         </div>
         <div className={styles.control__wrapper}>
           <Input<IStepOneForm>
-            htmlFor="sername"
             type="text"
-            id="sername"
+            id="field-sername"
             labelText="Sername"
-            name="Sername"
             placeholder="Sername"
             register={register}
             required={true}
@@ -142,6 +140,7 @@ const StepOne: React.FC = () => {
                 <ReactSelect
                   options={options}
                   placeholder="Не выбрано"
+                  id="fiels-sex"
                   value={getValue(value)}
                   onChange={(newValue) =>
                     onChange((newValue as IOptions).value)

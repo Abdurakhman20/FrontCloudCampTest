@@ -5,12 +5,10 @@ import { InputProps } from "./types";
 import cn from "classnames";
 
 function Input<T extends FieldValues>({
-  htmlFor,
   type,
   id,
   placeholder,
   labelText,
-  name,
   register,
   required,
   pattern,
@@ -29,7 +27,7 @@ function Input<T extends FieldValues>({
 
   return (
     <div className={wrapperClasses}>
-      <label htmlFor={htmlFor}>{name}</label>
+      <label htmlFor={id}>{labelText}</label>
       <input
         type={type}
         id={id}

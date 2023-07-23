@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface IStepsState {
   steps: number[];
@@ -25,7 +25,12 @@ export const stepsSlice = createSlice({
         state.current -= 1;
       }
     },
+    setCurrentStep: (state, action: PayloadAction<number>) => {
+      if (action.payload > 0 && action.payload <= 3) {
+        state.current = action.payload;
+      }
+    },
   },
 });
-export const { onClickNext, onClickBack } = stepsSlice.actions;
+export const { onClickNext, onClickBack, setCurrentStep } = stepsSlice.actions;
 export default stepsSlice.reducer;

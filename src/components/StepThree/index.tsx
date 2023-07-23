@@ -2,10 +2,11 @@ import React from "react";
 import styles from "./StepThree.module.scss";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import Button from "../UI/Button";
-import { useAppDispatch } from "../../redux/store";
+import { RootState, useAppDispatch } from "../../redux/store";
 import { onClickBack } from "../../redux/slices/stepsSlice";
 import TextArea from "../UI/TextArea";
-import { setStepThreeData } from "../../redux/slices/formSlice";
+import { sendFormData, setStepThreeData } from "../../redux/slices/formSlice";
+import { useSelector } from "react-redux";
 
 interface IStepThreeForm {
   about: string;
@@ -22,10 +23,20 @@ const StepThree: React.FC = () => {
     mode: "onBlur",
   });
   const dispatch = useAppDispatch();
+  const { stepOneData, stepTwoData, stepThreeData, modalData } = useSelector(
+    (state: RootState) => state.form
+  );
   const textAreaLength = watch("about")?.replace(/\s+/g, "").length;
   const onSubmit: SubmitHandler<IStepThreeForm> = (data: IStepThreeForm) => {
     console.log(data);
     dispatch(setStepThreeData(data));
+    dispatch(
+      sendFormData({
+        stepOneData,
+        stepTwoData,
+        stepThreeData,
+      })
+    );
     reset();
   };
 

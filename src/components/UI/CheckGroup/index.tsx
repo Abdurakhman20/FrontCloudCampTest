@@ -15,6 +15,7 @@ function CheckGroup<T extends FieldValues>({
   register,
 }: CheckGroupProps<T>) {
   const options = [{ value: 1 }, { value: 2 }, { value: 3 }];
+
   return (
     <div className={styles.checkGroup}>
       <label className={styles.label}>{labelText} </label>
