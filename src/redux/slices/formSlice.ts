@@ -16,12 +16,20 @@ export type TypeStepThreeData = {
 };
 
 interface IFormSlice {
+  modalData: {
+    isOpen: boolean;
+    status: "success" | "error";
+  };
   stepOneData: TypeStepOneData;
   stepTwoData: TypeStepTwoData;
   stepThreeData: TypeStepThreeData;
 }
 
 const initialState: IFormSlice = {
+  modalData: {
+    isOpen: false,
+    status: "success",
+  },
   stepOneData: {
     Name: "",
     Nickname: "",
@@ -51,9 +59,12 @@ export const formSlice = createSlice({
     setStepThreeData: (state, action: PayloadAction<TypeStepThreeData>) => {
       state.stepThreeData = action.payload;
     },
+    closeModal: (state) => {
+      state.modalData = { ...state.modalData, isOpen: false };
+    },
   },
 });
 
-export const { setStepOneData, setStepTwoData, setStepThreeData } =
+export const { setStepOneData, setStepTwoData, setStepThreeData, closeModal } =
   formSlice.actions;
 export default formSlice.reducer;

@@ -7,9 +7,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import StepTwo from "../../components/StepTwo";
 import StepThree from "../../components/StepThree";
+import Modal from "../../components/UI/Modal";
 
 const CreatePage: React.FC = () => {
   const current = useSelector((state: RootState) => state.steps.current);
+  const { isOpen, status } = useSelector(
+    (state: RootState) => state.form.modalData
+  );
 
   const renderStep = () => {
     switch (current) {
@@ -29,6 +33,7 @@ const CreatePage: React.FC = () => {
       <div className={styles.stepperContainer}>
         <Stepper />
       </div>
+      {isOpen && <Modal status={status} />}
       <PageWrapper>{renderStep()}</PageWrapper>
     </>
   );
