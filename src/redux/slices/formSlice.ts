@@ -87,6 +87,22 @@ export const formSlice = createSlice({
     closeModal: (state) => {
       state.modalData = { ...state.modalData, isOpen: false };
     },
+    clearAllData: (state) => {
+      state.stepOneData = {
+        Name: "",
+        Nickname: "",
+        Sername: "",
+        Sex: "",
+      };
+      state.stepTwoData = {
+        advantages: [""],
+        checkboxGroup: [0],
+        radioGroup: 0,
+      };
+      state.stepThreeData = {
+        about: "",
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(sendFormData.pending, (state) => {
@@ -101,6 +117,11 @@ export const formSlice = createSlice({
   },
 });
 
-export const { setStepOneData, setStepTwoData, setStepThreeData, closeModal } =
-  formSlice.actions;
+export const {
+  setStepOneData,
+  setStepTwoData,
+  setStepThreeData,
+  closeModal,
+  clearAllData,
+} = formSlice.actions;
 export default formSlice.reducer;

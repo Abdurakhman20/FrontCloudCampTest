@@ -5,7 +5,11 @@ import Button from "../UI/Button";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { onClickBack } from "../../redux/slices/stepsSlice";
 import TextArea from "../UI/TextArea";
-import { sendFormData, setStepThreeData } from "../../redux/slices/formSlice";
+import {
+  sendFormData,
+  setStepThreeData,
+  clearAllData,
+} from "../../redux/slices/formSlice";
 import { useSelector } from "react-redux";
 
 interface IStepThreeForm {
@@ -28,7 +32,6 @@ const StepThree: React.FC = () => {
   );
   const textAreaLength = watch("about")?.replace(/\s+/g, "").length;
   const onSubmit: SubmitHandler<IStepThreeForm> = (data: IStepThreeForm) => {
-    console.log(data);
     dispatch(setStepThreeData(data));
     dispatch(
       sendFormData({
@@ -37,6 +40,7 @@ const StepThree: React.FC = () => {
         stepThreeData,
       })
     );
+    dispatch(clearAllData());
     reset();
   };
 
