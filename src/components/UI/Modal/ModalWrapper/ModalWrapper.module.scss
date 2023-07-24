@@ -9,4 +9,13 @@
   text-align: center;
   background-color: #fff;
   border-radius: 12px;
+
+  @media (max-width: 440px) {
+    padding: 22px;
+    max-width: 300px;
+  }
+  @media (max-width: 300px) {
+    padding: 22px;
+    max-width: 250px;
+  }
 }

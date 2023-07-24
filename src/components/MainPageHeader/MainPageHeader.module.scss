@@ -15,6 +15,17 @@
   align-items: center;
   font-size: 40px;
   margin-right: 24px;
+
+  @media (max-width: 440px) {
+    font-size: 30px;
+    padding: 0px 20px;
+    border-radius: 50%;
+  }
+  @media (max-width: 300px) {
+    font-size: 20px;
+    padding: 0px 20px;
+    border-radius: 50%;
+  }
 }
 .name {
   font-size: 20px;
@@ -22,9 +33,16 @@
   font-weight: 600;
   line-height: 26px;
   margin-bottom: 8px;
+  @media (max-width: 300px) {
+    font-size: 18px;
+  }
 }
 .linksContainer {
   display: flex;
+  @media (max-width: 300px) {
+    flex-wrap: wrap;
+    row-gap: 5px;
+  }
 }
 .linkItem {
   margin-right: 16px;
